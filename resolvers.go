@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	fields "github.com/gbaptista/requested-fields"
 	"fmt"
+	fields "github.com/gbaptista/requested-fields"
 	"log"
 )
 
