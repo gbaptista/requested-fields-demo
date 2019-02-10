@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	fields "github.com/gbaptista/requested-fields"
+	"fmt"
 	"log"
 )
 
@@ -21,8 +22,8 @@ type AddressResolver struct {
 func (queryResolver *Query) User(ctx context.Context) *UserResolver {
 	userResolver := &UserResolver{}
 	userResolver.Field.SetParent(queryResolver)
-
-	log.Println("Query.User Fields: %v", fields.RequestedFor(ctx, userResolver))
+	log.Println(fmt.Sprintf(
+		"Query.User Fields: %v", fields.RequestedFor(ctx, userResolver)))
 
 	return userResolver
 }
@@ -37,8 +38,8 @@ func (userResolver *UserResolver) Address(ctx context.Context) *AddressResolver 
 	addressResolver := &AddressResolver{}
 	addressResolver.Field.SetParent(userResolver)
 
-	log.Println("User.Address Fields: %v",
-		fields.RequestedFor(ctx, addressResolver))
+	log.Println(fmt.Sprintf(
+		"User.Address Fields: %v", fields.RequestedFor(ctx, addressResolver)))
 
 	return addressResolver
 }

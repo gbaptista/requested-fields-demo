@@ -46,7 +46,7 @@ func graphqlRequestHandler(writer http.ResponseWriter, request *http.Request) {
 	json.NewDecoder(request.Body).Decode(&params)
 
 	ctx := context.WithValue(request.Context(),
-		"graphqlRequestTree", fields.BuildTree(params.Query))
+		fields.ContextKey, fields.BuildTree(params.Query))
 
 	response := parsedSchema.Exec(
 		ctx, params.Query, params.OperationName, params.Variables)
